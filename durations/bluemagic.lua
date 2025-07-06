@@ -47,7 +47,8 @@ local refreshReceived = {
     [27464] = 15, --Inspirited Boots
     [28316] = 15, --Shabti Sabatons
     [28317] = 21, --Shab. Sabatons +1
-    [11575] = 30 --Grapevine Cape
+    [11575] = 30, --Grapevine Cape
+    [11383] = 25 --Mirage Charuqs +1
 };
 
 local function ApplyDiffusion(duration)
@@ -83,7 +84,11 @@ local function Initialize(tracker, buffer)
 
      --Refueling
     buffer[530] = function(targetId)
-        return CalculateBlueMagicDuration(300, true, false), 33;
+    	local duration = 300;
+        if dataTracker:GetPlayerId() == targetId then
+            duration = duration + dataTracker:EquipSum(refreshReceived);
+        end
+        return CalculateBlueMagicDuration(duration, true, false), 33;
     end
 
      --Memento Mori
@@ -148,7 +153,11 @@ local function Initialize(tracker, buffer)
 
      --Animating Wail
     buffer[661] = function(targetId)
-        return CalculateBlueMagicDuration(300, true, false), 33;
+    	local duration = 300;
+        if dataTracker:GetPlayerId() == targetId then
+            duration = duration + dataTracker:EquipSum(refreshReceived);
+        end
+        return CalculateBlueMagicDuration(duration, true, false), 33;
     end
 
      --Battery Charge
@@ -168,7 +177,11 @@ local function Initialize(tracker, buffer)
 
      --Magic Barrier
     buffer[668] = function(targetId)
-        return CalculateBlueMagicDuration(300, true, false), 152;
+    	local duration = 300;
+        if dataTracker:GetPlayerId() == targetId then
+            duration = duration + dataTracker:EquipSum(refreshReceived);
+        end
+        return CalculateBlueMagicDuration(duration, true, false), 152;
     end
 
      --Fantod
@@ -183,7 +196,11 @@ local function Initialize(tracker, buffer)
 
      --Barrier Tusk
     buffer[685] = function(targetId)
-        return CalculateBlueMagicDuration(180, true, false), 116;
+    	local duration = 300;
+        if dataTracker:GetPlayerId() == targetId then
+            duration = duration + dataTracker:EquipSum(refreshReceived);
+        end
+        return CalculateBlueMagicDuration(duration, true, false), 116;
     end
 
      --O. Counterstance

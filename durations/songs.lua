@@ -251,6 +251,9 @@ local allSongsEquipment = {
     [28253] = 0.11, --Brioso Slippers +1
     [23317] = 0.13, --Brioso Slippers +2
     [23652] = 0.15, --Brioso Slippers +3
+
+    -- CE Custom
+    [22296] = 0.10, --Rouser
 };
 
 local function GetInstrumentId();
@@ -272,11 +275,15 @@ local function SongSum()
             total = total + value;
         end
     end
-    local augments = dataTracker:ParseAugments().Generic[0x043];
+
+    local parse = dataTracker:ParseAugments()
+    if (parse) then
+        local augments = parse.Generic[0x043];
     if augments then
         for _,v in pairs(augments) do
             total = total + (v + 1);
         end
+    end
     end
     return total;
 end
@@ -298,6 +305,8 @@ local function AddConditionalInstruments(multiplier)
         if (dataTracker:GetBuffActive(511)) then
             multiplier = multiplier + 0.2;
         end
+    elseif (instrument == 22296) then
+        multiplier = multiplier * .05
     end
     return multiplier;
 end
