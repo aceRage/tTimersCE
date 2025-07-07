@@ -200,7 +200,7 @@ local function Initialize(tracker, buffer)
         if dataTracker:GetPlayerId() == targetId then
             duration = duration + dataTracker:EquipSum(refreshReceived);
         end
-        return CalculateBlueMagicDuration(duration, true, false), 116;
+        return CalculateBlueMagicDuration(duration, true, false), 150;
     end
 
      --O. Counterstance
